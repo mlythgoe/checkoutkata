@@ -68,7 +68,19 @@ public class CheckoutTest
 
         checkoutProcessor.addCartItemToCheckout("A");
 
-        assertEquals(new BigDecimal("1.00"), checkoutProcessor.calculateCartTotalCost());
+        checkoutProcessor.addCartItemToCheckout("B");
+
+        checkoutProcessor.addCartItemToCheckout("B");
+
+        checkoutProcessor.addCartItemToCheckout("B");
+
+        checkoutProcessor.addCartItemToCheckout("B");
+
+        checkoutProcessor.addCartItemToCheckout("B");
+
+        assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateCartTotalCost());
+
+        // TODO -= MORE TESTS
 
 
 

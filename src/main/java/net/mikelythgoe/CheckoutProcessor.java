@@ -1,12 +1,16 @@
 package net.mikelythgoe;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CheckoutProcessor {
 
     private Map<String, Integer> aggregatedItems = new HashMap<String, Integer>();
+
+//    private List<String> items = new ArrayList<>();
+
 
 
     public void addCartItemToCheckout(String code) {
@@ -19,23 +23,69 @@ public class CheckoutProcessor {
             aggregatedItems.put(code, ++itemCount);
         }
 
+        //items.add(code);
+
     }
 
     public BigDecimal calculateCartTotalCost() {
 
 
-        Repository repository = new Repository();
+//        List<Person> people = Arrays.asList(new Person("Steve", "wine"), new Person("Steve", "cola"),
+//                new Person("Ben", "cola"), new Person("Ben", "cola"), new Person("Steve", "wine"),
+//                new Person("Steve", "wine"));
+//
+//        Map<Person, Long> map = people.stream()
+//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//
+//        Map<String, Integer> map = items.stream()
+//                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        String code;
-        Integer itemCount;
+
+        Repository repository = new Repository();
 
         BigDecimal totalCost = BigDecimal.ZERO;
 
+        String code;
+        Integer quantity;
+
         for (Map.Entry<String,Integer> entry : aggregatedItems.entrySet()) {
 
-            BigDecimal itemUnitPrice = repository.getItemUnitPrice(entry.getKey()).getUnitPrice();
+            code = entry.getKey();
+            quantity = entry.getValue();
 
-            totalCost = totalCost.add(itemUnitPrice.multiply(new BigDecimal(entry.getValue())));
+            ItemSpecialPrice itemSpecialPrice = repository.getItemSpecialPrice(code);
+
+            ItemUnitPrice itemUnitPrice = repository.getItemUnitPrice(code);
+
+            BigDecimal itemTotalCost = BigDecimal.ZERO;
+
+            if (itemSpecialPrice != null && itemSpecialPrice.getNumberOfItems() <= quantity) {
+
+                // Calculate discount price
+                // quantity / number of items = discount units (multiple bprice
+                // quantity mod number of times = units at full price
+
+                BigDecimal specialPriceTotal = new BigDecimal(
+                        quantity / itemSpecialPrice.getNumberOfItems() )
+                        .multiply(itemSpecialPrice.getSpecialPrice() );
+
+                BigDecimal normalPriceTotal = new BigDecimal(
+                        quantity % itemSpecialPrice.getNumberOfItems() ).multiply(itemUnitPrice.getUnitPrice());
+
+
+                itemTotalCost = specialPriceTotal.add(normalPriceTotal);
+
+
+                System.out.println("calculating discount");
+
+
+            } else {
+                itemTotalCost = new BigDecimal(quantity).multiply(itemUnitPrice.getUnitPrice());
+            }
+
+
+
+            totalCost = totalCost.add(itemTotalCost);
 
         }
 
