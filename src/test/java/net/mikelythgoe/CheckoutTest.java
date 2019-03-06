@@ -58,4 +58,22 @@ public class CheckoutTest
         assertNull(repository.getItemSpecialPrice(nonExistentCode));
 
     }
+
+    @Test
+    public void testTotalCostforOneNormalPriceItem() {
+
+        CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
+
+        checkoutProcessor.addCartItemToCheckout("A");
+
+        checkoutProcessor.addCartItemToCheckout("A");
+
+        assertEquals(new BigDecimal("1.00"), checkoutProcessor.calculateCartTotalCost());
+
+
+
+
+
+
+    }
 }
