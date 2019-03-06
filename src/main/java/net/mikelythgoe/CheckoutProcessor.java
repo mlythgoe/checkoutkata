@@ -72,26 +72,19 @@ public class CheckoutProcessor {
                 BigDecimal normalPriceTotal = new BigDecimal(
                         quantity % itemSpecialPrice.getNumberOfItems() ).multiply(itemUnitPrice.getUnitPrice());
 
-
                 itemTotalCost = specialPriceTotal.add(normalPriceTotal);
 
-
-                System.out.println("calculating discount");
-
-
             } else {
+
                 itemTotalCost = new BigDecimal(quantity).multiply(itemUnitPrice.getUnitPrice());
+
             }
-
-
 
             totalCost = totalCost.add(itemTotalCost);
 
         }
 
         return totalCost;
-
-
 
     }
 }

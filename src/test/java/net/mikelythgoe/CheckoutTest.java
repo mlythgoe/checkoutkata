@@ -11,8 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 /**
  * Unit test for simple App.
  */
-public class CheckoutTest
-{
+public class CheckoutTest {
 
 
     private static Repository repository = new Repository();
@@ -30,7 +29,7 @@ public class CheckoutTest
     @Test
     public void testItemSpecialPriceRetrieval() {
 
-        Integer expectedNumberOfItemsForSpecialPriceForItemA = new Integer(3) ;
+        Integer expectedNumberOfItemsForSpecialPriceForItemA = new Integer(3);
         BigDecimal expectedSpecialPriceForItemA = new BigDecimal("1.30");
         String codeA = "A";
 
@@ -66,6 +65,19 @@ public class CheckoutTest
 
         checkoutProcessor.addCartItemToCheckout("A");
 
+        checkoutProcessor.addCartItemToCheckout("B");
+
+        assertEquals(new BigDecimal("0.80"), checkoutProcessor.calculateCartTotalCost());
+
+    }
+
+    @Test
+    public void testTotalCostforSpecialPricesAndsNormalPrice() {
+
+        CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
+
+        checkoutProcessor.addCartItemToCheckout("A");
+
         checkoutProcessor.addCartItemToCheckout("A");
 
         checkoutProcessor.addCartItemToCheckout("B");
@@ -81,10 +93,6 @@ public class CheckoutTest
         assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateCartTotalCost());
 
         // TODO -= MORE TESTS
-
-
-
-
 
 
     }
