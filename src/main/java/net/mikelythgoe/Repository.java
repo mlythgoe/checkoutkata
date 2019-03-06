@@ -14,7 +14,7 @@ public class Repository {
 
     private Map<String, ItemUnitPrice> itemPrices = new HashMap<String, ItemUnitPrice>();
 
-    private Map<String, ItemSpecialPrice> itemSpecialPrices = new HashMap();
+    private Map<String, ItemSpecialPrice> itemSpecialPrices = new HashMap<String, ItemSpecialPrice>();
 
     public Repository() {
 
@@ -36,17 +36,21 @@ public class Repository {
         itemSpecialPrices.put(itemSpecialPriceA.getCode(), itemSpecialPriceA);
 
         ItemSpecialPrice itemSpecialPriceB = new ItemSpecialPrice("B", 2, new BigDecimal("0.45"));
-        itemSpecialPrices.put(itemSpecialPriceA.getCode(), itemSpecialPriceA);
+        itemSpecialPrices.put(itemSpecialPriceB.getCode(), itemSpecialPriceB);
 
 
     }
 
     public ItemUnitPrice getItemUnitPrice(String code) {
+
         return itemPrices.get(code);
+
     }
 
     public ItemSpecialPrice getItemSpecialPrice(String code) {
+
         return itemSpecialPrices.get(code);
+
     }
 
 }

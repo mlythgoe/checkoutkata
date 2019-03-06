@@ -8,8 +8,6 @@ public class CheckoutProcessor {
 
     private Map<String, Integer> aggregatedItems = new HashMap<String, Integer>();
 
-    private Repository repository;
-
 
     public void addCartItemToCheckout(String code) {
 
@@ -26,7 +24,7 @@ public class CheckoutProcessor {
     public BigDecimal calculateCartTotalCost() {
 
 
-        repository = new Repository();
+        Repository repository = new Repository();
 
         String code;
         Integer itemCount;
