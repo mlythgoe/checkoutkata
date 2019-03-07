@@ -84,14 +84,16 @@ public class CheckoutProcessor {
 
     }
 
-    private BigDecimal calculateSpecialPrice(Integer quantity, ItemUnitPrice itemUnitPrice, ItemSpecialPrice itemSpecialPrice) {
+    private BigDecimal calculateSpecialPrice(Integer quantity,
+                                             ItemUnitPrice itemUnitPrice, ItemSpecialPrice itemSpecialPrice) {
 
         BigDecimal specialPriceTotal = new BigDecimal(
                 quantity / itemSpecialPrice.getNumberOfItems())
                 .multiply(itemSpecialPrice.getSpecialPrice());
 
         BigDecimal normalPriceTotal = new BigDecimal(
-                quantity % itemSpecialPrice.getNumberOfItems()).multiply(itemUnitPrice.getUnitPrice());
+                quantity % itemSpecialPrice.getNumberOfItems())
+                .multiply(itemUnitPrice.getUnitPrice());
 
         return specialPriceTotal.add(normalPriceTotal);
 

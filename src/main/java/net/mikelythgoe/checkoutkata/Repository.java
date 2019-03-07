@@ -25,10 +25,12 @@ class Repository {
         itemPrices.put(itemD.getCode(), itemD);
 
 
-        ItemSpecialPrice itemSpecialPriceA = new ItemSpecialPrice("A", 3, new BigDecimal("1.30"));
+        ItemSpecialPrice itemSpecialPriceA =
+                new ItemSpecialPrice("A", 3, new BigDecimal("1.30"));
         itemSpecialPrices.put(itemSpecialPriceA.getCode(), itemSpecialPriceA);
 
-        ItemSpecialPrice itemSpecialPriceB = new ItemSpecialPrice("B", 2, new BigDecimal("0.45"));
+        ItemSpecialPrice itemSpecialPriceB =
+                new ItemSpecialPrice("B", 2, new BigDecimal("0.45"));
         itemSpecialPrices.put(itemSpecialPriceB.getCode(), itemSpecialPriceB);
 
     }
