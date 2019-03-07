@@ -9,13 +9,13 @@ public class CheckoutProcessor {
 
     private void consolidateBasket(Basket basket) {
 
-    Iterator<BasketItem> basketIterator = basket.getBasketItems().iterator();
+        Iterator<BasketItem> basketIterator = basket.getBasketItems().iterator();
 
         BasketItem basketItem;
 
         Integer itemCount;
 
-        while ( basketIterator.hasNext() ) {
+        while (basketIterator.hasNext()) {
 
             basketItem = basketIterator.next();
 
@@ -45,7 +45,7 @@ public class CheckoutProcessor {
 
         consolidateBasket(basket);
 
-        for (Map.Entry<String,Integer> entry : aggregatedItems.entrySet()) {
+        for (Map.Entry<String, Integer> entry : aggregatedItems.entrySet()) {
 
             code = entry.getKey();
             quantity = entry.getValue();
@@ -80,18 +80,18 @@ public class CheckoutProcessor {
 
     private BigDecimal calculateNormalPrice(Integer quantity, ItemUnitPrice itemUnitPrice) {
 
-        return new BigDecimal( quantity ).multiply( itemUnitPrice.getUnitPrice() );
+        return new BigDecimal(quantity).multiply(itemUnitPrice.getUnitPrice());
 
     }
 
     private BigDecimal calculateSpecialPrice(Integer quantity, ItemUnitPrice itemUnitPrice, ItemSpecialPrice itemSpecialPrice) {
 
         BigDecimal specialPriceTotal = new BigDecimal(
-                quantity / itemSpecialPrice.getNumberOfItems() )
-                .multiply(itemSpecialPrice.getSpecialPrice() );
+                quantity / itemSpecialPrice.getNumberOfItems())
+                .multiply(itemSpecialPrice.getSpecialPrice());
 
         BigDecimal normalPriceTotal = new BigDecimal(
-                quantity % itemSpecialPrice.getNumberOfItems() ).multiply(itemUnitPrice.getUnitPrice());
+                quantity % itemSpecialPrice.getNumberOfItems()).multiply(itemUnitPrice.getUnitPrice());
 
         return specialPriceTotal.add(normalPriceTotal);
 
