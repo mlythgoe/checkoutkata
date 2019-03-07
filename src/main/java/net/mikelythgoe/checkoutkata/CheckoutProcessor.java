@@ -7,17 +7,17 @@ public class CheckoutProcessor {
 
     private Map<String, Integer> aggregatedItems = new HashMap<String, Integer>();
 
-    public void addCartItemToCheckout(String code) {
+    public void addBasketItemToCheckout(BasketItem basketItem) {
 
-        Integer itemCount = aggregatedItems.get(code);
+        Integer itemCount = aggregatedItems.get(basketItem.getCode());
 
         if ( itemCount == null ) {
 
-            aggregatedItems.put(code, 1);
+            aggregatedItems.put(basketItem.getCode(), 1);
 
         } else {
 
-            aggregatedItems.put(code, ++itemCount);
+            aggregatedItems.put(basketItem.getCode(), ++itemCount);
 
         }
 

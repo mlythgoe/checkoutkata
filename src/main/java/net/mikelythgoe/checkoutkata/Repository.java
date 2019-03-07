@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Repository {
+class Repository {
 
     private Map<String, ItemUnitPrice> itemPrices = new HashMap<String, ItemUnitPrice>();
 

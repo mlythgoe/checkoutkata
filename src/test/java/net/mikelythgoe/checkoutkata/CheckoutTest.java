@@ -7,14 +7,12 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-
 public class CheckoutTest {
-
 
     private static Repository repository = new Repository();
 
     @Test
-    public void testItemUnitPriceRetrieval() {
+    void testItemUnitPriceRetrieval() {
 
         BigDecimal expectedUnitPriceForItemA = new BigDecimal("0.50");
         String codeA = "A";
@@ -24,9 +22,9 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testItemSpecialPriceRetrieval() {
+    void testItemSpecialPriceRetrieval() {
 
-        Integer expectedNumberOfItemsForSpecialPriceForItemA = new Integer(3);
+        Integer expectedNumberOfItemsForSpecialPriceForItemA = 3;
         BigDecimal expectedSpecialPriceForItemA = new BigDecimal("1.30");
         String codeA = "A";
 
@@ -38,7 +36,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testItemUnitPriceRetrievalForNonExistentCode() {
+    void testItemUnitPriceRetrievalForNonExistentCode() {
 
         String nonExistentCode = "NonExistent";
 
@@ -47,7 +45,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testItemSpecialPriceRetrievalForNonExistentCode() {
+    void testItemSpecialPriceRetrievalForNonExistentCode() {
 
         String nonExistentCode = "NonExistent";
 
@@ -56,7 +54,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostForNoItems() {
+    void testTotalCostForNoItems() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
@@ -65,73 +63,79 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostForOneNormalPriceItemCodeA() {
+    void testTotalCostForOneNormalPriceItemCodeA() {
+
+        Basket basket = new Basket();
+
+        BasketItem basketItem = new BasketItem("A");
+
+        basket.addItem(basketItem);
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addCartItemToCheckout("A");
+        checkoutProcessor.addBasketItemToCheckout(basketItem);
 
         assertEquals(new BigDecimal("0.50"), checkoutProcessor.calculateCartTotalCost());
 
     }
 
     @Test
-    public void testTotalCostForOneNormalPriceItemCodeB() {
+    void testTotalCostForOneNormalPriceItemCodeB() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addCartItemToCheckout("B");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
 
         assertEquals(new BigDecimal("0.30"), checkoutProcessor.calculateCartTotalCost());
 
     }
 
     @Test
-    public void testTotalCostForTwoNormalPriceItemsCodeAAndCodeB() {
+    void testTotalCostForTwoNormalPriceItemsCodeAAndCodeB() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addCartItemToCheckout("A");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
 
-        checkoutProcessor.addCartItemToCheckout("B");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
 
         assertEquals(new BigDecimal("0.80"), checkoutProcessor.calculateCartTotalCost());
 
     }
 
     @Test
-    public void testTotalCostForSpecialPriceItemsCodeA() {
+    void testTotalCostForSpecialPriceItemsCodeA() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addCartItemToCheckout("A");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
 
-        checkoutProcessor.addCartItemToCheckout("A");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
 
-        checkoutProcessor.addCartItemToCheckout("A");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
 
         assertEquals(new BigDecimal("1.30"), checkoutProcessor.calculateCartTotalCost());
 
     }
 
     @Test
-    public void testTotalCostForSpecialPriceCodeBAndNormalPriceCodeA() {
+    void testTotalCostForSpecialPriceCodeBAndNormalPriceCodeA() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addCartItemToCheckout("A");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
 
-        checkoutProcessor.addCartItemToCheckout("A");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
 
-        checkoutProcessor.addCartItemToCheckout("B");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
 
-        checkoutProcessor.addCartItemToCheckout("B");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
 
-        checkoutProcessor.addCartItemToCheckout("B");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
 
-        checkoutProcessor.addCartItemToCheckout("B");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
 
-        checkoutProcessor.addCartItemToCheckout("B");
+        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
 
         assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateCartTotalCost());
 
