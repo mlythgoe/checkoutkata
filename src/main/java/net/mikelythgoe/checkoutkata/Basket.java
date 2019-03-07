@@ -5,24 +5,30 @@ import java.util.List;
 
 public class Basket {
 
-    private List<BasketItem> items;
+    private List<BasketItem> basketItems;
 
     public Basket() {
 
-        items = new ArrayList<BasketItem>();
+        basketItems = new ArrayList<BasketItem>();
+
+    }
+
+    public List<BasketItem> getBasketItems() {
+
+        return basketItems;
 
     }
 
     public void addItem(BasketItem basketItem) {
 
-        items.add(basketItem);
+        basketItems.add(basketItem);
 
     }
 
     @Override
     public String toString() {
         return "Basket{" +
-                "items=" + items +
+                "basketItems=" + basketItems +
                 '}';
     }
 }

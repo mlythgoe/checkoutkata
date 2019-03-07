@@ -56,9 +56,11 @@ public class CheckoutTest {
     @Test
     void testTotalCostForNoItems() {
 
+        Basket basket = new Basket();
+
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        assertEquals(new BigDecimal("0.00"), checkoutProcessor.calculateBasketTotalCost());
+        assertEquals(new BigDecimal("0.00"), checkoutProcessor.calculateBasketTotalCost(basket));
 
     }
 
@@ -73,71 +75,83 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addItemToBasket(basketItem);
-
-        assertEquals(new BigDecimal("0.50"), checkoutProcessor.calculateBasketTotalCost());
+        assertEquals(new BigDecimal("0.50"), checkoutProcessor.calculateBasketTotalCost(basket));
 
     }
 
     @Test
     void testTotalCostForOneNormalPriceItemCodeB() {
 
+        Basket basket = new Basket();
+
+        BasketItem basketItem = new BasketItem("B");
+
+        basket.addItem(basketItem);
+
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addItemToBasket(new BasketItem("B"));
-
-        assertEquals(new BigDecimal("0.30"), checkoutProcessor.calculateBasketTotalCost());
+        assertEquals(new BigDecimal("0.30"), checkoutProcessor.calculateBasketTotalCost(basket));
 
     }
 
     @Test
     void testTotalCostForTwoNormalPriceItemsCodeAAndCodeB() {
 
+        Basket basket = new Basket();
+
+        BasketItem basketItem = new BasketItem("A");
+
+        basket.addItem(basketItem);
+
+        basketItem = new BasketItem("B");
+
+        basket.addItem(basketItem);
+
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addItemToBasket(new BasketItem("A"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("B"));
-
-        assertEquals(new BigDecimal("0.80"), checkoutProcessor.calculateBasketTotalCost());
+        assertEquals(new BigDecimal("0.80"), checkoutProcessor.calculateBasketTotalCost(basket));
 
     }
 
     @Test
     void testTotalCostForSpecialPriceItemsCodeA() {
 
+        Basket basket = new Basket();
+
+        basket.addItem(new BasketItem("A"));
+
+        basket.addItem(new BasketItem("A"));
+
+        basket.addItem(new BasketItem("A"));
+
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addItemToBasket(new BasketItem("A"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("A"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("A"));
-
-        assertEquals(new BigDecimal("1.30"), checkoutProcessor.calculateBasketTotalCost());
+        assertEquals(new BigDecimal("1.30"), checkoutProcessor.calculateBasketTotalCost(basket));
 
     }
 
     @Test
     void testTotalCostForSpecialPriceCodeBAndNormalPriceCodeA() {
 
+        Basket basket = new Basket();
+
+        basket.addItem(new BasketItem("A"));
+
+        basket.addItem(new BasketItem("A"));
+
+        basket.addItem(new BasketItem("B"));
+
+        basket.addItem(new BasketItem("B"));
+
+        basket.addItem(new BasketItem("B"));
+
+        basket.addItem(new BasketItem("B"));
+
+        basket.addItem(new BasketItem("B"));
+
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addItemToBasket(new BasketItem("A"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("A"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("B"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("B"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("B"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("B"));
-
-        checkoutProcessor.addItemToBasket(new BasketItem("B"));
-
-        assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateBasketTotalCost());
+        assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateBasketTotalCost(basket));
 
 
     }

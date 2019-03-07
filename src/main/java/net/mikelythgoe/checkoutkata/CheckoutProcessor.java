@@ -23,7 +23,34 @@ public class CheckoutProcessor {
 
     }
 
-    public BigDecimal calculateBasketTotalCost() {
+    private void consolidateBasket(Basket basket) {
+
+    Iterator<BasketItem> basketIterator = basket.getBasketItems().iterator();
+
+        BasketItem basketItem;
+
+        Integer itemCount;
+
+        while ( basketIterator.hasNext() ) {
+
+            basketItem = basketIterator.next();
+
+            itemCount = aggregatedItems.get(basketItem.getCode());
+
+            if (itemCount == null) {
+
+                aggregatedItems.put(basketItem.getCode(), 1);
+
+            } else {
+
+                aggregatedItems.put(basketItem.getCode(), ++itemCount);
+
+            }
+        }
+
+    }
+
+    public BigDecimal calculateBasketTotalCost(Basket basket) {
 
         Repository repository = new Repository();
 
@@ -31,6 +58,8 @@ public class CheckoutProcessor {
 
         String code;
         Integer quantity;
+
+        consolidateBasket(basket);
 
         for (Map.Entry<String,Integer> entry : aggregatedItems.entrySet()) {
 
