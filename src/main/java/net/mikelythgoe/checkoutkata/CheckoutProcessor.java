@@ -7,7 +7,7 @@ public class CheckoutProcessor {
 
     private Map<String, Integer> aggregatedItems = new HashMap<String, Integer>();
 
-    public void addBasketItemToCheckout(BasketItem basketItem) {
+    public void addItemToBasket(BasketItem basketItem) {
 
         Integer itemCount = aggregatedItems.get(basketItem.getCode());
 
@@ -23,7 +23,7 @@ public class CheckoutProcessor {
 
     }
 
-    public BigDecimal calculateCartTotalCost() {
+    public BigDecimal calculateBasketTotalCost() {
 
         Repository repository = new Repository();
 

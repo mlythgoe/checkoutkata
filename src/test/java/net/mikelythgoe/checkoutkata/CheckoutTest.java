@@ -58,7 +58,7 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        assertEquals(new BigDecimal("0.00"), checkoutProcessor.calculateCartTotalCost());
+        assertEquals(new BigDecimal("0.00"), checkoutProcessor.calculateBasketTotalCost());
 
     }
 
@@ -73,9 +73,9 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addBasketItemToCheckout(basketItem);
+        checkoutProcessor.addItemToBasket(basketItem);
 
-        assertEquals(new BigDecimal("0.50"), checkoutProcessor.calculateCartTotalCost());
+        assertEquals(new BigDecimal("0.50"), checkoutProcessor.calculateBasketTotalCost());
 
     }
 
@@ -84,9 +84,9 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
+        checkoutProcessor.addItemToBasket(new BasketItem("B"));
 
-        assertEquals(new BigDecimal("0.30"), checkoutProcessor.calculateCartTotalCost());
+        assertEquals(new BigDecimal("0.30"), checkoutProcessor.calculateBasketTotalCost());
 
     }
 
@@ -95,11 +95,11 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
+        checkoutProcessor.addItemToBasket(new BasketItem("A"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
+        checkoutProcessor.addItemToBasket(new BasketItem("B"));
 
-        assertEquals(new BigDecimal("0.80"), checkoutProcessor.calculateCartTotalCost());
+        assertEquals(new BigDecimal("0.80"), checkoutProcessor.calculateBasketTotalCost());
 
     }
 
@@ -108,13 +108,13 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
+        checkoutProcessor.addItemToBasket(new BasketItem("A"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
+        checkoutProcessor.addItemToBasket(new BasketItem("A"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
+        checkoutProcessor.addItemToBasket(new BasketItem("A"));
 
-        assertEquals(new BigDecimal("1.30"), checkoutProcessor.calculateCartTotalCost());
+        assertEquals(new BigDecimal("1.30"), checkoutProcessor.calculateBasketTotalCost());
 
     }
 
@@ -123,21 +123,21 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
+        checkoutProcessor.addItemToBasket(new BasketItem("A"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("A"));
+        checkoutProcessor.addItemToBasket(new BasketItem("A"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
+        checkoutProcessor.addItemToBasket(new BasketItem("B"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
+        checkoutProcessor.addItemToBasket(new BasketItem("B"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
+        checkoutProcessor.addItemToBasket(new BasketItem("B"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
+        checkoutProcessor.addItemToBasket(new BasketItem("B"));
 
-        checkoutProcessor.addBasketItemToCheckout(new BasketItem("B"));
+        checkoutProcessor.addItemToBasket(new BasketItem("B"));
 
-        assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateCartTotalCost());
+        assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateBasketTotalCost());
 
 
     }
