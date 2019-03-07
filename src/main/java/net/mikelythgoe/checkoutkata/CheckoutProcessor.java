@@ -7,22 +7,6 @@ public class CheckoutProcessor {
 
     private Map<String, Integer> aggregatedItems = new HashMap<String, Integer>();
 
-    public void addItemToBasket(BasketItem basketItem) {
-
-        Integer itemCount = aggregatedItems.get(basketItem.getCode());
-
-        if ( itemCount == null ) {
-
-            aggregatedItems.put(basketItem.getCode(), 1);
-
-        } else {
-
-            aggregatedItems.put(basketItem.getCode(), ++itemCount);
-
-        }
-
-    }
-
     private void consolidateBasket(Basket basket) {
 
     Iterator<BasketItem> basketIterator = basket.getBasketItems().iterator();
