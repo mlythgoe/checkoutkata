@@ -6,9 +6,9 @@ import java.util.Map;
 
 class Repository {
 
-    private Map<String, ItemUnitPrice> itemPrices = new HashMap<String, ItemUnitPrice>();
+    private Map<String, ItemUnitPrice> itemPrices = new HashMap<>();
 
-    private Map<String, ItemSpecialPrice> itemSpecialPrices = new HashMap<String, ItemSpecialPrice>();
+    private Map<String, ItemSpecialPrice> itemSpecialPrices = new HashMap<>();
 
     public Repository() {
 

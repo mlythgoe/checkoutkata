@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CheckoutProcessor {
 
-    private Map<String, Integer> aggregatedItems = new HashMap<String, Integer>();
+    private Map<String, Integer> aggregatedItems = new HashMap<>();
 
     private void consolidateBasket(Basket basket) {
 
