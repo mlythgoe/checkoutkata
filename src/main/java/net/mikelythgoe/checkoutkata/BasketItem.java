@@ -1,17 +1,18 @@
 package net.mikelythgoe.checkoutkata;
 
-public class CartItem {
+public class BasketItem {
 
     private String code;
 
-    public CartItem(String code) {
+    public BasketItem(String code) {
         this.code = code;
     }
 
     @Override
     public String toString() {
-        return "CartItem{" +
+        return "BasketItem{" +
                 "code='" + code + '\'' +
                 '}';
     }
+
 }

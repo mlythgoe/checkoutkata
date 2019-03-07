@@ -12,17 +12,18 @@ public class CheckoutProcessor {
         Integer itemCount = aggregatedItems.get(code);
 
         if ( itemCount == null ) {
-            aggregatedItems.put(code, 1);
-        } else {
-            aggregatedItems.put(code, ++itemCount);
-        }
 
-        //items.add(code);
+            aggregatedItems.put(code, 1);
+
+        } else {
+
+            aggregatedItems.put(code, ++itemCount);
+
+        }
 
     }
 
     public BigDecimal calculateCartTotalCost() {
-
 
 //        List<Person> people = Arrays.asList(new Person("Steve", "wine"), new Person("Steve", "cola"),
 //                new Person("Ben", "cola"), new Person("Ben", "cola"), new Person("Steve", "wine"),
@@ -54,22 +55,15 @@ public class CheckoutProcessor {
 
             // Calculate special price if item has sufficient quantity to qualify
             // Calculate normal price for any of those items that didn't qualify for the special price
-            // If the item quantity does not qualify for a special price calculate the normal price
+            // If the item quantity does not qualify for a special price just calculate the normal price
             if (itemSpecialPrice != null && itemSpecialPrice.getNumberOfItems() <= quantity) {
 
-                BigDecimal specialPriceTotal = new BigDecimal(
-                        quantity / itemSpecialPrice.getNumberOfItems() )
-                        .multiply(itemSpecialPrice.getSpecialPrice() );
-
-                BigDecimal normalPriceTotal = new BigDecimal(
-                        quantity % itemSpecialPrice.getNumberOfItems() ).multiply(itemUnitPrice.getUnitPrice());
-
-                itemTotalCost = specialPriceTotal.add(normalPriceTotal);
+                itemTotalCost = calculateSpecialPrice(quantity, itemUnitPrice, itemSpecialPrice);
 
             } else {
 
                 // Item didn't qualify for special price
-                itemTotalCost = new BigDecimal(quantity).multiply(itemUnitPrice.getUnitPrice());
+                itemTotalCost = calculateNormalPrice(quantity, itemUnitPrice);
 
             }
 
@@ -78,6 +72,25 @@ public class CheckoutProcessor {
         }
 
         return totalCost;
+
+    }
+
+    private BigDecimal calculateNormalPrice(Integer quantity, ItemUnitPrice itemUnitPrice) {
+
+        return new BigDecimal( quantity ).multiply( itemUnitPrice.getUnitPrice() );
+
+    }
+
+    private BigDecimal calculateSpecialPrice(Integer quantity, ItemUnitPrice itemUnitPrice, ItemSpecialPrice itemSpecialPrice) {
+
+        BigDecimal specialPriceTotal = new BigDecimal(
+                quantity / itemSpecialPrice.getNumberOfItems() )
+                .multiply(itemSpecialPrice.getSpecialPrice() );
+
+        BigDecimal normalPriceTotal = new BigDecimal(
+                quantity % itemSpecialPrice.getNumberOfItems() ).multiply(itemUnitPrice.getUnitPrice());
+
+        return specialPriceTotal.add(normalPriceTotal);
 
     }
 }

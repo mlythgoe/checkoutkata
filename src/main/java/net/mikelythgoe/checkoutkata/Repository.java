@@ -31,7 +31,6 @@ public class Repository {
         ItemSpecialPrice itemSpecialPriceB = new ItemSpecialPrice("B", 2, new BigDecimal("0.45"));
         itemSpecialPrices.put(itemSpecialPriceB.getCode(), itemSpecialPriceB);
 
-
     }
 
     public ItemUnitPrice getItemUnitPrice(String code) {

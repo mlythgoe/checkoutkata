@@ -1,7 +1,5 @@
 package net.mikelythgoe.checkoutkata;
 
-import net.mikelythgoe.checkoutkata.CheckoutProcessor;
-import net.mikelythgoe.checkoutkata.Repository;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -10,9 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 
-/**
- * Unit test for simple App.
- */
 public class CheckoutTest {
 
 
@@ -120,7 +115,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostForSpecialPriceCodeBAndsNormalPriceCodeA() {
+    public void testTotalCostForSpecialPriceCodeBAndNormalPriceCodeA() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
