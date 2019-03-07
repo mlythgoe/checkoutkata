@@ -1,4 +1,4 @@
-package net.mikelythgoe;
+package net.mikelythgoe.checkoutkata;
 
 /**
  * Hello world!

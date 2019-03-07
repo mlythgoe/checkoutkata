@@ -1,4 +1,4 @@
-package net.mikelythgoe;
+package net.mikelythgoe.checkoutkata;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -6,18 +6,11 @@ import java.util.Map;
 
 public class Repository {
 
-    //        A	50	3 for 130
-//        B	30	2 for 45
-//        C	20
-//        D	15
-
-
     private Map<String, ItemUnitPrice> itemPrices = new HashMap<String, ItemUnitPrice>();
 
     private Map<String, ItemSpecialPrice> itemSpecialPrices = new HashMap<String, ItemSpecialPrice>();
 
     public Repository() {
-
 
         ItemUnitPrice itemA = new ItemUnitPrice("A", new BigDecimal("0.50"));
         itemPrices.put(itemA.getCode(), itemA);

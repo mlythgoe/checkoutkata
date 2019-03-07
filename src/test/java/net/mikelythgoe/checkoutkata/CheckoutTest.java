@@ -1,5 +1,7 @@
-package net.mikelythgoe;
+package net.mikelythgoe.checkoutkata;
 
+import net.mikelythgoe.checkoutkata.CheckoutProcessor;
+import net.mikelythgoe.checkoutkata.Repository;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -59,7 +61,29 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostforOneNormalPriceItem() {
+    public void testTotalCostforOneNormalPriceItemCodeA() {
+
+        CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
+
+        checkoutProcessor.addCartItemToCheckout("A");
+
+        assertEquals(new BigDecimal("0.50"), checkoutProcessor.calculateCartTotalCost());
+
+    }
+
+    @Test
+    public void testTotalCostforOneNormalPriceItemCodeB() {
+
+        CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
+
+        checkoutProcessor.addCartItemToCheckout("B");
+
+        assertEquals(new BigDecimal("0.30"), checkoutProcessor.calculateCartTotalCost());
+
+    }
+
+    @Test
+    public void testTotalCostforTwoNormalPriceItemsCodeAAndCodeB() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
@@ -72,7 +96,22 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostforSpecialPricesAndsNormalPrice() {
+    public void testTotalCostforSpecialPriceItemsCodeA() {
+
+        CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
+
+        checkoutProcessor.addCartItemToCheckout("A");
+
+        checkoutProcessor.addCartItemToCheckout("A");
+
+        checkoutProcessor.addCartItemToCheckout("A");
+
+        assertEquals(new BigDecimal("1.30"), checkoutProcessor.calculateCartTotalCost());
+
+    }
+
+    @Test
+    public void testTotalCostforSpecialPriceCodeBAndsNormalPriceCodeA() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
@@ -91,8 +130,6 @@ public class CheckoutTest {
         checkoutProcessor.addCartItemToCheckout("B");
 
         assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateCartTotalCost());
-
-        // TODO -= MORE TESTS
 
 
     }

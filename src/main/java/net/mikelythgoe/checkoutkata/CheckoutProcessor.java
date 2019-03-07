@@ -1,17 +1,11 @@
-package net.mikelythgoe;
+package net.mikelythgoe.checkoutkata;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class CheckoutProcessor {
 
     private Map<String, Integer> aggregatedItems = new HashMap<String, Integer>();
-
-//    private List<String> items = new ArrayList<>();
-
-
 
     public void addCartItemToCheckout(String code) {
 
@@ -39,7 +33,6 @@ public class CheckoutProcessor {
 //
 //        Map<String, Integer> map = items.stream()
 //                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
 
         Repository repository = new Repository();
 

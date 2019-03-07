@@ -1,4 +1,4 @@
-package net.mikelythgoe;
+package net.mikelythgoe.checkoutkata;
 
 import java.util.ArrayList;
 import java.util.List;
