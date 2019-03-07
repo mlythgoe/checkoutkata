@@ -36,7 +36,7 @@ public class CheckoutProcessor {
 
         Repository repository = new Repository();
 
-        BigDecimal totalCost = BigDecimal.ZERO;
+        BigDecimal totalCost = new BigDecimal("0.00");
 
         String code;
         Integer quantity;
@@ -50,13 +50,12 @@ public class CheckoutProcessor {
 
             ItemUnitPrice itemUnitPrice = repository.getItemUnitPrice(code);
 
-            BigDecimal itemTotalCost = BigDecimal.ZERO;
+            BigDecimal itemTotalCost;
 
+            // Calculate special price if item has sufficient quantity to qualify
+            // Calculate normal price for any of those items that didn't qualify for the special price
+            // If the item quantity does not qualify for a special price calculate the normal price
             if (itemSpecialPrice != null && itemSpecialPrice.getNumberOfItems() <= quantity) {
-
-                // Calculate discount price
-                // quantity / number of items = discount units (multiple bprice
-                // quantity mod number of times = units at full price
 
                 BigDecimal specialPriceTotal = new BigDecimal(
                         quantity / itemSpecialPrice.getNumberOfItems() )
@@ -69,6 +68,7 @@ public class CheckoutProcessor {
 
             } else {
 
+                // Item didn't qualify for special price
                 itemTotalCost = new BigDecimal(quantity).multiply(itemUnitPrice.getUnitPrice());
 
             }

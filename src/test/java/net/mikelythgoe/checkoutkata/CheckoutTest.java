@@ -61,7 +61,16 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostforOneNormalPriceItemCodeA() {
+    public void testTotalCostForNoItems() {
+
+        CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
+
+        assertEquals(new BigDecimal("0.00"), checkoutProcessor.calculateCartTotalCost());
+
+    }
+
+    @Test
+    public void testTotalCostForOneNormalPriceItemCodeA() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
@@ -72,7 +81,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostforOneNormalPriceItemCodeB() {
+    public void testTotalCostForOneNormalPriceItemCodeB() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
@@ -83,7 +92,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostforTwoNormalPriceItemsCodeAAndCodeB() {
+    public void testTotalCostForTwoNormalPriceItemsCodeAAndCodeB() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
@@ -96,7 +105,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostforSpecialPriceItemsCodeA() {
+    public void testTotalCostForSpecialPriceItemsCodeA() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
@@ -111,7 +120,7 @@ public class CheckoutTest {
     }
 
     @Test
-    public void testTotalCostforSpecialPriceCodeBAndsNormalPriceCodeA() {
+    public void testTotalCostForSpecialPriceCodeBAndsNormalPriceCodeA() {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
