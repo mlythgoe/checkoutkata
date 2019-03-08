@@ -2,36 +2,17 @@ package net.mikelythgoe.checkoutkata;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CheckoutProcessor {
 
-    private Map<String, Integer> aggregatedItems = new HashMap<>();
+    private Map<String, Long> aggregatedItems = new HashMap<>();
 
     private void consolidateBasket(Basket basket) {
 
-        Iterator<BasketItem> basketIterator = basket.getBasketItems().iterator();
-
-        BasketItem basketItem;
-
-        Integer itemCount;
-
-        while (basketIterator.hasNext()) {
-
-            basketItem = basketIterator.next();
-
-            itemCount = aggregatedItems.get(basketItem.getCode());
-
-            if (itemCount == null) {
-
-                aggregatedItems.put(basketItem.getCode(), 1);
-
-            } else {
-
-                aggregatedItems.put(basketItem.getCode(), ++itemCount);
-
-            }
-        }
-
+        aggregatedItems = basket.getBasketItems().stream()
+                .collect(Collectors.groupingBy(BasketItem::getCode,
+                        Collectors.counting()));
     }
 
     public BigDecimal calculateBasketTotalCost(Basket basket) {
@@ -41,11 +22,11 @@ public class CheckoutProcessor {
         BigDecimal totalCost = new BigDecimal("0.00");
 
         String code;
-        Integer quantity;
+        Long quantity;
 
         consolidateBasket(basket);
 
-        for (Map.Entry<String, Integer> entry : aggregatedItems.entrySet()) {
+        for (Map.Entry<String, Long> entry : aggregatedItems.entrySet()) {
 
             code = entry.getKey();
             quantity = entry.getValue();
@@ -78,13 +59,13 @@ public class CheckoutProcessor {
 
     }
 
-    private BigDecimal calculateNormalPrice(Integer quantity, ItemUnitPrice itemUnitPrice) {
+    private BigDecimal calculateNormalPrice(Long quantity, ItemUnitPrice itemUnitPrice) {
 
         return new BigDecimal(quantity).multiply(itemUnitPrice.getUnitPrice());
 
     }
 
-    private BigDecimal calculateSpecialPrice(Integer quantity,
+    private BigDecimal calculateSpecialPrice(Long quantity,
                                              ItemUnitPrice itemUnitPrice, ItemSpecialPrice itemSpecialPrice) {
 
         BigDecimal specialPriceTotal = new BigDecimal(
