@@ -12,7 +12,7 @@ class Repository {
 
     public Repository() {
 
-        ItemUnitPrice itemA = new ItemUnitPrice("A", new BigDecimal("0.50"));
+        ItemUnitPrice itemA = new ItemUnitPrice("A", new BigDecimal("0.99"));
         itemPrices.put(itemA.getCode(), itemA);
 
         ItemUnitPrice itemB = new ItemUnitPrice("B", new BigDecimal("0.30"));
@@ -23,7 +23,6 @@ class Repository {
 
         ItemUnitPrice itemD = new ItemUnitPrice("D", new BigDecimal("0.15"));
         itemPrices.put(itemD.getCode(), itemD);
-
 
         ItemSpecialPrice itemSpecialPriceA =
                 new ItemSpecialPrice("A", 3, new BigDecimal("1.30"));

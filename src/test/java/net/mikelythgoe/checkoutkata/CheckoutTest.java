@@ -14,7 +14,7 @@ public class CheckoutTest {
     @Test
     void testItemUnitPriceRetrieval() {
 
-        BigDecimal expectedUnitPriceForItemA = new BigDecimal("0.50");
+        BigDecimal expectedUnitPriceForItemA = new BigDecimal("0.99");
         String codeA = "A";
 
         assertEquals(expectedUnitPriceForItemA, repository.getItemUnitPrice(codeA).getUnitPrice());
@@ -75,7 +75,7 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        assertEquals(new BigDecimal("0.50"), checkoutProcessor.calculateBasketTotalCost(basket));
+        assertEquals(new BigDecimal("0.99"), checkoutProcessor.calculateBasketTotalCost(basket));
 
     }
 
@@ -109,7 +109,7 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        assertEquals(new BigDecimal("0.80"), checkoutProcessor.calculateBasketTotalCost(basket));
+        assertEquals(new BigDecimal("1.29"), checkoutProcessor.calculateBasketTotalCost(basket));
 
     }
 
@@ -151,7 +151,7 @@ public class CheckoutTest {
 
         CheckoutProcessor checkoutProcessor = new CheckoutProcessor();
 
-        assertEquals(new BigDecimal("2.20"), checkoutProcessor.calculateBasketTotalCost(basket));
+        assertEquals(new BigDecimal("3.18"), checkoutProcessor.calculateBasketTotalCost(basket));
 
 
     }
