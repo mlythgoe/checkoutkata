@@ -3,6 +3,10 @@ package net.mikelythgoe.checkoutkata;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Trigger Jenkins Build
+ */
+
 public class Basket {
 
     private List<BasketItem> basketItems;
