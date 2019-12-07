@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-// trigger Jenkins Build
-
 public class CheckoutTest {
 
     private static Repository repository = new Repository();
