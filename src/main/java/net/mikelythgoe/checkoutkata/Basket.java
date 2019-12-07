@@ -9,7 +9,7 @@ public class Basket {
 
     public Basket() {
 
-        basketItems = new ArrayList<BasketItem>();
+        basketItems = new ArrayList<>();
 
     }
 
