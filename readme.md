@@ -26,3 +26,5 @@ Because the pricing changes frequently, we need to be able to pass in a set of p
 handling a checkout transaction
 
 This line added to trigger Jenkins
+
+Added this line to trigger a Jenkins Build (after pushing to GitHub)
